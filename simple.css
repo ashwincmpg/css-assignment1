@@ -1,0 +1,291 @@
+/* Pseudo-element Selector Example */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    
+    --bg-base: #0a0f0d;
+    --bg-gradient: linear-gradient(135deg, #07120e 0%, #0d1a15 50%, #14241e 100%); 
+    --glass-bg: rgba(15, 27, 23, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-main: #e2e8f0;
+    --text-muted: #cad5e4;
+    --green-glow: #4ade80;
+}
+
+/* Type Selector Example */
+body {
+    font-family: "Vend Sans", sans-serif;
+    font-size: 1.1rem;
+    background-color: var(--bg-base);
+    background-image: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 40px 20px;
+}
+
+a {
+    color: var(--green-glow);
+    text-decoration: none;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+a:hover {
+    color: #86efac;
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.4);
+}
+
+/* Class Selector Example */
+.page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+/* ID Selector Example */
+#zen-intro {
+    background-image:radial-gradient(circle,rgba(15, 27, 23, 0.6) 10%, rgba(15, 27, 23, 0.6) 90%),url("china.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid var(--glass-border);
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+#zen-intro:hover{
+    transform: scale(1.03); /*size change animation*/
+}
+
+/* Descendant Combinator Example */
+#zen-intro header {
+    margin-bottom: 25px;
+}
+
+#zen-intro h1 {
+    font-family: "Stack Sans Notch", sans-serif;
+    font-size: 3.5rem;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+    text-align: center;
+}
+
+#zen-intro h2 {
+    font-family: "Stack Sans Text", sans-serif;
+    font-size: 1.7rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+#zen-summary {
+    margin: 30px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 30px;
+}
+
+#zen-summary p:first-child {
+    font-size: 1.1rem;
+    max-width: 800px;
+}
+
+#zen-summary p:last-child {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+#zen-summary p:last-child a {
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--glass-border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#zen-summary p:last-child a:first-child {
+    background-color: var(--green-glow);
+    color: #052e16;
+}
+
+#zen-summary p:last-child a:last-child {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+#zen-summary p:last-child a:hover {
+    transform: translateY(-2px);   /*position change animation*/
+    box-shadow: 0 5px 15px rgba(74, 222, 128, 0.2);
+}
+
+#zen-preamble h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+#zen-preamble p {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+@media (min-width: 992px) {
+    .page-wrapper {
+        grid-template-columns: 2fr 1fr; 
+    }
+
+    #zen-intro {
+        grid-column: 1 / span 2; 
+    }
+
+    #zen-supporting {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        align-content: start; 
+    }
+
+    #zen-requirements {
+        grid-column: 1 / span 2;
+    }
+}
+
+/* Child Combinator Example */
+#zen-supporting > div { 
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#zen-supporting > div:hover {
+    border-color: rgba(74, 222, 128, 0.25);
+    box-shadow: 0 10px 30px rgba(74, 222, 128, 0.05);
+}
+
+#zen-supporting h3 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+#zen-supporting p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+/* Direct Sibling Combinator Example */
+#zen-supporting h3 + p {
+    font-weight: 500;
+}
+
+/* General Sibling Combinator Example */
+#zen-supporting h3 ~ p {
+    line-height: 1.8;
+}
+
+/* Attribute Selector Example */
+#zen-requirements p[role="contentinfo"] {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.sidebar .wrapper > div {
+    background: rgba(11, 22, 18, 0.8); 
+    border: 1px solid rgba(74, 222, 128, 0.12);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar h3 {
+    font-size: 1.1rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(74, 222, 128, 0.2);
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 0.95rem;
+}
+
+.design-name {
+    display: block;
+    font-weight: 500;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.designer-name {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+footer {
+    grid-column: 1 / -1; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 30px 0;
+    margin-top: 20px;
+}
+
+footer a {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 8px 20px;
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Pseudo-class Selector Example */
+footer a:hover {
+    color: #ffffff;
+    border-color: var(--green-glow);
+}
+
+
+/*I refered many websites and youtube for studying for the improvement of this website.
+I have faced difficulty about layouts and other things which was so time consuming.
+I am insprired and motivated to continue learning and improving my skills and showcase it in assignments,but due to the time limit,
+i'm unable to contribute more at the moment.
+Thank you for your support and allowing time to complete this project. */
